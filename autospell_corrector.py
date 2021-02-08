@@ -13,6 +13,7 @@ import pytrec_eval
 #C: Corpus of misspelled words paired with the word intended (correct word)
 #N: top-N similar words
 D = words.words()
+print(f'The size of the dictionary D: {len(D)}')
 N = 10
 
 # file1 = open("data/FAWTHROP1DAT.643")
@@ -30,7 +31,7 @@ while True:
     mistake_pair = line.strip().split()
     mistakes[mistake_pair[1]] = mistake_pair[0]
 C_file.close()
-
+print(f'The size of the corpus C of misspelled words: {len(mistakes.items())}')
 # for word in word_list:
 #     if wordnet.synsets(word):
 #         common_word_list.append(word)
@@ -38,12 +39,12 @@ C_file.close()
 #         pass
 
 mistakes_samples = mistakes
-#mistakes_samples = dict()
+mistakes_samples = dict()
 #random selection of the list for lower the time complexity
-#for i in range(5):
-#    k, v = random.choice(list(mistakes.items()))
-#    mistakes_samples[k] = v
-
+for i in range(100):
+    k, v = random.choice(list(mistakes.items()))
+    mistakes_samples[k] = v
+print(f'The size of the sampled corpus C of misspelled words: {len(mistakes_samples.items())}')
 qrel = dict()
 qret = dict()
 
