@@ -6,10 +6,11 @@ from nltk import edit_distance
 # file1 = open("data/FAWTHROP1DAT.643")
 
 # Using readline()
+
+#Open and read pairs in a dictionary
 file1 = open("data/FAWTHROP1DAT.643")
 count = 0
 mistakes = dict()
-
 while True:
     count += 1
     line = file1.readline()
@@ -17,21 +18,17 @@ while True:
         break
     mistake_pair = line.strip().split()
     mistakes[mistake_pair[1]] = mistake_pair[0]
-
 file1.close()
 
+#Get List of Words from NLTK word list
 word_list = words.words()
 common_word_list = []
 
-# for word in word_list:
-#     if wordnet.synsets(word):
-#         common_word_list.append(word)
-#     else:
-#         pass
 
 result = dict()
 positions = []
 
+#Calculate Levenshtien distance and suggest correct word based on that
 for index, (key, value) in enumerate(mistakes.items()):
     if index % 27 == 0:
         print(key, value)
